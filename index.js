@@ -54,11 +54,21 @@ app.post('/webhook', (req, res) => {
           "text": `¡Me has despertado!, mi nombre es "CJ"`
         }
 
+        let basic_hello = ["hola","Hola","hey","Hey","Buenas","buenas","que onda",
+        "¿Qué onda?","¿qué onda?","que onda","hi","Hi","buen dia","buenas tardes",
+        "buenas noches","Buenas Noches","Buenas Tardes","ayuda","ola","Ola","whatsup",
+        "whats up","oye","Oye","oie","Oie"];
+
         if(received_message.text === "que eres"){
           response = {
             "text":"Soy un simple ChatBot a tu servicio"
           }
         }
+
+        setTimeout(() => {
+          response = {"text":"¿Necesitas algo más?"}
+        }, 10000);
+
       } else if (received_message.attachments) {
         // Get the URL of the message attachment
         let attachment_url = received_message.attachments[0].payload.url;
