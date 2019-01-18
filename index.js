@@ -59,13 +59,10 @@ app.post('/webhook', (req, res) => {
         "buenas noches","Buenas Noches","Buenas Tardes","ayuda","ola","Ola","whatsup",
         "whats up","oye","Oye","oie","Oie"];
 
-        if(received_message.text === "que eres"){
+        if(received_message.text in basic_hello){
           response = {
-            "text":"Soy un simple ChatBot a tu servicio"
+            "text":"¿Dime qué necesitas?"
           }
-          setTimeout(() => {
-            response = {"text":"¿Necesitas algo más?"}
-          }, 10000);
         }
 
       } else if (received_message.attachments) {
