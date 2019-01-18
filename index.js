@@ -3,10 +3,11 @@
 // Imports dependencies and set up http server
 const
   express = require('express'),
+  request = require('request'),
   bodyParser = require('body-parser'),
   app = express().use(bodyParser.json()); // creates express http server
 
-PAGE_ACCESS_TOKEN = "EAADZC8apK3RUBAJD9rvLb8PsKcf5943zm9UFKU68Rq8IiZBLXcbzx5wsJt3ZCFRS4NYozPjay7uFENkjswMBBSbjnfxjWzCgKxtLGlt6sheMCrd4PxJfZCJrDoEKf3Mk5yrV7BZAncVZBs3huQIuzJIwLhxRMU1l92db3G0P2z9mCY4vAgLPRL"
+//PAGE_ACCESS_TOKEN = "EAADZC8apK3RUBAJD9rvLb8PsKcf5943zm9UFKU68Rq8IiZBLXcbzx5wsJt3ZCFRS4NYozPjay7uFENkjswMBBSbjnfxjWzCgKxtLGlt6sheMCrd4PxJfZCJrDoEKf3Mk5yrV7BZAncVZBs3huQIuzJIwLhxRMU1l92db3G0P2z9mCY4vAgLPRL"
 
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 
@@ -33,7 +34,56 @@ app.post('/webhook', (req, res) => {
       let sender_psid = webhook_event.sender.id;
       console.log('Sender PSID: ' + sender_psid);
 
+      if (webhook_event.message) {
+        handleMessage(sender_psid, webhook_event.message);        
+      } else if (webhook_event.postback) {
+        handlePostback(sender_psid, webhook_event.postback);
+      }
+
     });
+
+    // Handles messages events
+      function handleMessage(sender_psid, received_message) {
+
+        let response;
+
+        if(received_message.text){
+          response = {
+            "text": `You sent the message: "${received_message.text}"`
+          }
+        }
+
+        callSendAPI(sender_psid, response);
+      }
+
+  // Handles messaging_postbacks events
+      function handlePostback(sender_psid, received_postback) {
+
+      }
+
+  // Sends response messages via the Send API
+      function callSendAPI(sender_psid, response) {
+        
+        let request_body = {
+          "recipient": {
+            "id": sender_psid
+          },
+          "message": response
+        }
+
+        request({
+          "uri": "https://graph.facebook.com/v2.6/me/messages",
+          "qs": { "access_token": "EAADZC8apK3RUBADV6uDhSV563gXkkNIv57xnJCQMNZCptCrZAi7GqitRLtrvrvhRqOAOSPzZA7JTv2GPblxAHXVorZBlp3HTULvUSemdosyyq0PlW3y1TtfOzHZA1hyNAMsSBzM4h41Df8tZCSmLJVQj2ogEDZBjIrNb9099DLUy54641gdy3RSI" },
+          "method": "POST",
+          "json": request_body
+          }, (err, res, body) => {
+            if(!err){
+              console.log("Message Sent!");
+            } else {
+              console.error("Unable to send message:" + err);
+            }
+        })
+    }
 
     // Returns a '200 OK' response to all requests
     res.status(200).send('EVENT_RECEIVED');
@@ -49,21 +99,6 @@ app.get('/webhook', (req, res) => {
 
   // Your verify token. Should be a random string.
   let VERIFY_TOKEN = "gangster"
-
-  // Handles messages events
-function handleMessage(sender_psid, received_message) {
-
-}
-
-// Handles messaging_postbacks events
-function handlePostback(sender_psid, received_postback) {
-
-}
-
-// Sends response messages via the Send API
-function callSendAPI(sender_psid, response) {
-  
-}
     
   // Parse the query params
   let mode = req.query['hub.mode'];
@@ -92,4 +127,4 @@ function callSendAPI(sender_psid, response) {
 //setting POST method: 
 //curl -H "Content-Type: application/json" -X POST "localhost:1337/webhook" -d '{"object": "page", "entry": [{"messaging": [{"message": "IT WORKS"}]}]}'
 
-//PAGE_ACCESS_TOKEN: EAADZC8apK3RUBAJD9rvLb8PsKcf5943zm9UFKU68Rq8IiZBLXcbzx5wsJt3ZCFRS4NYozPjay7uFENkjswMBBSbjnfxjWzCgKxtLGlt6sheMCrd4PxJfZCJrDoEKf3Mk5yrV7BZAncVZBs3huQIuzJIwLhxRMU1l92db3G0P2z9mCY4vAgLPRL
+//PAGE_ACCESS_TOKEN: EAADZC8apK3RUBADV6uDhSV563gXkkNIv57xnJCQMNZCptCrZAi7GqitRLtrvrvhRqOAOSPzZA7JTv2GPblxAHXVorZBlp3HTULvUSemdosyyq0PlW3y1TtfOzHZA1hyNAMsSBzM4h41Df8tZCSmLJVQj2ogEDZBjIrNb9099DLUy54641gdy3RSI
