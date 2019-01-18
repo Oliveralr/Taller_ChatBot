@@ -63,11 +63,10 @@ app.post('/webhook', (req, res) => {
           response = {
             "text":"Soy un simple ChatBot a tu servicio"
           }
+          setTimeout(() => {
+            response = {"text":"¿Necesitas algo más?"}
+          }, 10000);
         }
-
-        setTimeout(() => {
-          response = {"text":"¿Necesitas algo más?"}
-        }, 10000);
 
       } else if (received_message.attachments) {
         // Get the URL of the message attachment
