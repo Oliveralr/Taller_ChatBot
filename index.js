@@ -51,7 +51,13 @@ app.post('/webhook', (req, res) => {
         // Create the payload for a basic text message, which
         // will be added to the body of our request to the Send API
         response = {
-          "text": `Me has envíado el mensaje: "${received_message.text}".`
+          "text": `¡Me has despertado!, mi nombre es "CJ"`
+        }
+
+        if(received_message.text === "que eres"){
+          response = {
+            "text":"Soy un simple ChatBot a tu servicio"
+          }
         }
       } else if (received_message.attachments) {
         // Get the URL of the message attachment
