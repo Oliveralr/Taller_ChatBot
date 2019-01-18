@@ -63,18 +63,18 @@ app.post('/webhook', (req, res) => {
                 "payload": {
                   "template_type": "generic",
                   "elements": [{
-                    "title": "Is this the right picture?",
+                    "title": "¿Está es la foto correcta?",
                     "subtitle": "Tap a button to answer.",
                     "image_url": attachment_url,
                     "buttons": [
                       {
                         "type": "postback",
-                        "title": "Yes!",
+                        "title": "¡Sí!",
                         "payload": "yes",
                       },
                       {
                         "type": "postback",
-                        "title": "No!",
+                        "title": "¡No!",
                         "payload": "no",
                       }
                     ],
