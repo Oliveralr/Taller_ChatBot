@@ -100,6 +100,8 @@ app.post('/webhook', (req, res) => {
         else if(payload === 'no') {
           response = {"text":"Oops, envíala otra vez"}
         }
+
+        callSendAPI(sender_psid, response)
       }
 
   // Sends response messages via the Send API
