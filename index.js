@@ -61,7 +61,7 @@ app.post('/webhook', (req, res) => {
 
         let array_size = basic_hello.length();
 
-        if(received_message.text === basic_hello[0..array_size]){
+        if(received_message.text === "dime"){
           response = {
             "text":"¿Dime qué necesitas?"
           }
