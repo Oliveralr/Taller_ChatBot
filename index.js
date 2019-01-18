@@ -51,7 +51,7 @@ app.post('/webhook', (req, res) => {
         // Create the payload for a basic text message, which
         // will be added to the body of our request to the Send API
         response = {
-          "text": `You sent the message: "${received_message.text}". Now send me an attachment!`
+          "text": `Me has envíado el mensaje: "${received_message.text}".`
         }
       } else if (received_message.attachments) {
         // Get the URL of the message attachment
@@ -62,18 +62,18 @@ app.post('/webhook', (req, res) => {
             "payload": {
               "template_type": "generic",
               "elements": [{
-                "title": "Is this the right picture?",
-                "subtitle": "Tap a button to answer.",
+                "title": "¿Está imágen es correcta?",
+                "subtitle": "Presiona el botón para escoger",
                 "image_url": attachment_url,
                 "buttons": [
                   {
                     "type": "postback",
-                    "title": "Yes!",
+                    "title": "¡Sí!",
                     "payload": "yes",
                   },
                   {
                     "type": "postback",
-                    "title": "No!",
+                    "title": "Nel",
                     "payload": "no",
                   }
                 ],
@@ -90,6 +90,16 @@ app.post('/webhook', (req, res) => {
   // Handles messaging_postbacks events
       function handlePostback(sender_psid, received_postback) {
 
+        let response;
+
+        let payload = received_postback.payload;
+
+        if(payload === 'yes'){
+          response = {"text":"¡Cool!"}
+        }
+        else if(payload === 'no') {
+          response = {"text":"Oops, envíala otra vez"}
+        }
       }
 
   // Sends response messages via the Send API
