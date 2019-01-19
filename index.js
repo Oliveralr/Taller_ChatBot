@@ -59,7 +59,6 @@ app.post('/webhook', (req, res) => {
         "buenas noches","Buenas Noches","Buenas Tardes","ayuda","ola","Ola","whatsup",
         "whats up","oye","Oye","oie","Oie"];
 
-        let array_size = basic_hello.length();
 
         if(received_message.text === "dime"){
           response = {
