@@ -59,10 +59,15 @@ app.post('/webhook', (req, res) => {
         "buenas noches","Buenas Noches","Buenas Tardes","ayuda","ola","Ola","whatsup",
         "whats up","oye","Oye","oie","Oie"];
 
+        const space = basic_hello.length();
 
-        if(received_message.text === "clave"){
-          response = {
-            "text":"¿Dime qué necesitas?"
+        if(received_message === true){
+          for(let i = 0; i < space; i++){
+            if(received_message.text === basic_hello[i]){
+              response = {
+                "text":"¿Dime qué necesitas?"
+              }
+            } 
           }
         }
 
