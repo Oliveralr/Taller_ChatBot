@@ -61,15 +61,11 @@ app.post('/webhook', (req, res) => {
 
         const space = basic_hello.length();
 
-        if(received_message === true){
-          for(let i = 0; i < space; i++){
-            if(received_message.text === basic_hello[i]){
-              response = {
-                "text":"¿Dime qué necesitas?"
-              }
-            } 
+        if(received_message.text === basic_hello[i]){
+          response = {
+            "text":"¿Dime qué necesitas?"
           }
-        }
+        } 
 
       } else if (received_message.attachments) {
         // Get the URL of the message attachment
