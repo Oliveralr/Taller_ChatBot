@@ -61,7 +61,7 @@ app.post('/webhook', (req, res) => {
 
         const space = basic_hello.length();
 
-        if(received_message.text === basic_hello[0]){
+        if(received_message.text === "hola"){
           response = {
             "text":"¿Dime qué necesitas?"
           }
