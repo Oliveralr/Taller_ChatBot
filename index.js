@@ -60,7 +60,7 @@ app.post('/webhook', (req, res) => {
         "whats up","oye","Oye","oie","Oie"];
 
 
-        if(received_message.text === "dime"){
+        if(received_message.text === "clave"){
           response = {
             "text":"¿Dime qué necesitas?"
           }
