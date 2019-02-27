@@ -1,18 +1,18 @@
-// Imports dependencies and set up http server
+// Importa las dependencias y configura el servidor http
 var express = require('express'), request = require('request'), bodyParser = require('body-parser'), app = express().use(bodyParser.json()); // creates express http server
 //PAGE_ACCESS_TOKEN = "EAADZC8apK3RUBAJD9rvLb8PsKcf5943zm9UFKU68Rq8IiZBLXcbzx5wsJt3ZCFRS4NYozPjay7uFENkjswMBBSbjnfxjWzCgKxtLGlt6sheMCrd4PxJfZCJrDoEKf3Mk5yrV7BZAncVZBs3huQIuzJIwLhxRMU1l92db3G0P2z9mCY4vAgLPRL"
 var PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
-// Sets server port and logs message on success
+// Configuración de puerto y servidor
 app.listen(process.env.PORT || 1337, function () { return console.log('webhook is listening'); });
-// Creates the endpoint for our webhook 
+// Crea un endpoint WebHook
 app.post('/webhook', function (req, res) {
     var body = req.body;
-    // Checks this is an event from a page subscription
+    // Verifica si el evento es una subscripción
     if (body.object === 'page') {
-        // Iterates over each entry - there may be multiple if batched
+        // Itera sobre cada entrada
         body.entry.forEach(function (entry) {
-            // Gets the message. entry.messaging is an array, but 
-            // will only ever contain one message, so we get index 0
+            // Obtén el mensaje. entry.messaging es un arreglo, pero
+            // solo contendrá el mensaje, iniciamos con el índice 0
             var webhook_event = entry.messaging[0];
             console.log(webhook_event);
             // Get the sender PSID
@@ -25,15 +25,15 @@ app.post('/webhook', function (req, res) {
                 handlePostback(sender_psid, webhook_event.postback);
             }
         });
-        // Handles messages events
+        // Manejador de Mensajes
         function handleMessage(sender_psid, received_message) {
             var response;
-            // Checks if the message contains text
+            // Verifíca si el mensaje contiene texto
             if (received_message.text == "hola") {
-                // Create the payload for a basic text message, which
-                // will be added to the body of our request to the Send API
+                // Crea el payload para un mensaje de texto básico, which
+                // será añadido al cuerpo del Send API
                 response = {
-                    "text": "\u00A1Me has despertado!, mi nombre es \"CJ\", \u00BFQu\u00E9 necesitas?"
+                    "text": "\u00A1Me has despertado!, soy el GlassBot, \u00BFQu\u00E9 necesitas?"
                 };
                 var basic_hello = ["hola", "Hola", "hey", "Hey", "Buenas", "buenas", "que onda",
                     "¿Qué onda?", "¿qué onda?", "que onda", "hi", "Hi", "buen dia", "buenas tardes",
@@ -56,7 +56,7 @@ app.post('/webhook', function (req, res) {
                 productSelectionTwo(sender_psid);
             }
             else if (received_message.attachments) {
-                // Get the URL of the message attachment
+                // Obtén la URL del mensaje
                 var attachment_url = received_message.attachments[0].payload.url;
                 response = {
                     "attachment": {
@@ -86,13 +86,13 @@ app.post('/webhook', function (req, res) {
             }
             else if (received_message.text === "gracias") {
                 response = {
-                    "text": "Estoy para servirte"
+                    "text": "Estoy para servirte ;)"
                 };
             }
-            // Send the response message
+            // Envía la respuesta
             callSendAPI(sender_psid, response);
         }
-        // Handles messaging_postbacks events
+        // Manejador de eventos messaging_postbacks 
         function handlePostback(sender_psid, received_postback) {
             var response;
             var payload = received_postback.payload;
