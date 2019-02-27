@@ -187,7 +187,12 @@ app.post('/webhook', (req, res) => {
                 {
                   "type":"web_url",
                   "url":"https://www.messenger.com",
-                  "title":"Visita nuestro sitio web ;)"
+                  "title":"Visita nuestro sitio web"
+                },
+                {
+                  "type":"web_url",
+                  "url":"https://www.messenger.com",
+                  "title":"Comprar más" 
                 }
               ]
             }

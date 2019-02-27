@@ -35,13 +35,16 @@ app.post('/webhook', function (req, res) {
                 response = {
                     "text": "\u00A1Me has despertado!, mi nombre es \"CJ\", \u00BFQu\u00E9 necesitas?"
                 };
-                var basic_hello = ["hello", "Hola", "hey", "Hey", "Buenas", "buenas", "que onda",
+                var basic_hello = ["hola", "Hola", "hey", "Hey", "Buenas", "buenas", "que onda",
                     "¿Qué onda?", "¿qué onda?", "que onda", "hi", "Hi", "buen dia", "buenas tardes",
                     "buenas noches", "Buenas Noches", "Buenas Tardes", "ayuda", "ola", "Ola", "whatsup",
                     "whats up", "oye", "Oye", "oie", "Oie"];
             }
             else if (received_message.text === "comprar") {
                 sendMessageAPI(sender_psid);
+            }
+            else if (received_message.text === "ver mas") {
+                productSelection(sender_psid);
             }
             else if (received_message.attachments) {
                 // Get the URL of the message attachment
@@ -129,6 +132,47 @@ app.post('/webhook', function (req, res) {
                 "qs": { "access_token": "EAADZC8apK3RUBADV6uDhSV563gXkkNIv57xnJCQMNZCptCrZAi7GqitRLtrvrvhRqOAOSPzZA7JTv2GPblxAHXVorZBlp3HTULvUSemdosyyq0PlW3y1TtfOzHZA1hyNAMsSBzM4h41Df8tZCSmLJVQj2ogEDZBjIrNb9099DLUy54641gdy3RSI" },
                 "method": "POST",
                 "json": request_body_two
+            }, function (err, res, body) {
+                if (!err) {
+                    console.log("Message Sent!");
+                }
+                else {
+                    console.error("Unable to send message:" + err);
+                }
+            });
+        }
+        function productSelection(sender_psid) {
+            var request_body_three = {
+                "recipient": {
+                    "id": sender_psid
+                },
+                "message": {
+                    "attachment": {
+                        "type": "template",
+                        "payload": {
+                            "template_type": "button",
+                            "text": "Lentes de Sol temporada primavera-verano 2019",
+                            "buttons": [
+                                {
+                                    "type": "web_url",
+                                    "url": "https://www.messenger.com",
+                                    "title": "Visita nuestro sitio web"
+                                },
+                                {
+                                    "type": "web_url",
+                                    "url": "https://www.messenger.com",
+                                    "title": "Comprar más"
+                                }
+                            ]
+                        }
+                    }
+                }
+            };
+            request({
+                "uri": "https://graph.facebook.com/v2.6/me/messages",
+                "qs": { "access_token": "EAADZC8apK3RUBADV6uDhSV563gXkkNIv57xnJCQMNZCptCrZAi7GqitRLtrvrvhRqOAOSPzZA7JTv2GPblxAHXVorZBlp3HTULvUSemdosyyq0PlW3y1TtfOzHZA1hyNAMsSBzM4h41Df8tZCSmLJVQj2ogEDZBjIrNb9099DLUy54641gdy3RSI" },
+                "method": "POST",
+                "json": request_body_three
             }, function (err, res, body) {
                 if (!err) {
                     console.log("Message Sent!");
