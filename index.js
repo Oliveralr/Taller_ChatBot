@@ -51,7 +51,7 @@ app.post('/webhook', (req, res) => {
         // Create the payload for a basic text message, which
         // will be added to the body of our request to the Send API
         response = {
-          "text": `¡Me has despertado!, mi nombre es "CJ"`
+          "text": `¡Me has despertado!, mi nombre es "CJ", ¿Qué necesitas?`
         }
 
         let basic_hello = ["hola","Hola","hey","Hey","Buenas","buenas","que onda",
@@ -59,9 +59,31 @@ app.post('/webhook', (req, res) => {
         "buenas noches","Buenas Noches","Buenas Tardes","ayuda","ola","Ola","whatsup",
         "whats up","oye","Oye","oie","Oie"];
 
-        if(received_message.text === "objetivo"){
+        if(received_message.text === "comprar"){
           response = {
-            "text":"¿Dime qué necesitas?"
+            "attachment": {
+              "type": "template",
+              "payload": {
+                "template_type": "generic",
+                "elements": [{
+                  "title": "Te puedo ofrecer estas gafas de sol",
+                  "subtitle": "$649.00",
+                  "image_url": attachment_url,
+                  "buttons": [
+                    {
+                      "type": "postback",
+                      "title": "Comprar",
+                      "payload": "yes",
+                    },
+                    {
+                      "type": "postback",
+                      "title": "No me interesa",
+                      "payload": "no",
+                    }
+                  ],
+                }]
+              }
+            }
           }
         } 
 
