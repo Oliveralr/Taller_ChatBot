@@ -60,7 +60,7 @@ app.post('/webhook', (req, res) => {
         "whats up","oye","Oye","oie","Oie"];
 
         if(received_message.text === "comprar"){
-          imageSendAPI(sender_psid)
+          callSendAPI(sender_psid, response)
         } 
 
       } else if (received_message.attachments) {
