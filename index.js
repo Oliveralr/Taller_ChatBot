@@ -60,6 +60,9 @@ app.post('/webhook', (req, res) => {
         "whats up","oye","Oye","oie","Oie"];
 
         if(received_message.text === "comprar"){
+
+          let attachment_url = './public/img/gafas.jpg';
+
           response = {
             "attachment": {
               "type": "template",
