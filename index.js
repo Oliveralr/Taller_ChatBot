@@ -45,7 +45,7 @@ app.post('/webhook', function (req, res) {
                 response = {
                     "text": "Vendemos Lentes de muy buena calidad ;)"
                 };
-                callSendAPI(sender_psid, response);
+                //callSendAPI(sender_psid, response);
             }
             else if (received_message.text === "ver mas") {
                 productSelectionOne(sender_psid);
