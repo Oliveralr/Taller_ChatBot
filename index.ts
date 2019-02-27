@@ -185,7 +185,7 @@ app.post('/webhook', (req, res) => {
               "text":"Lentes de Sol temporada primavera-verano 2019",
               "buttons": [
                 {
-                  "web_url",
+                  "type":"web_url",
                   "url":"https://www.messenger.com",
                   "title":"Visita nuestro sitio web ;)"
                 }
