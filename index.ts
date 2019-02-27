@@ -168,6 +168,43 @@ app.post('/webhook', (req, res) => {
       })
     }
 
+    function productSelection(sender_psid){
+      let request_body_three = {
+        "recipient": {
+          "id": sender_psid
+        },
+        "message": {
+          "attachment":{
+            "type":"template", 
+            "payload":{
+              "template_type":"button",
+              "text":"Lentes de Sol temporada primavera-verano 2019",
+              "buttons": [
+                {
+                  "web_url",
+                  "url":"https://www.messenger.com",
+                  "title":"Visita nuestro sitio web ;)"
+                }
+              ]
+            }
+         }
+      }
+    }
+
+      request({
+        "uri": "https://graph.facebook.com/v2.6/me/messages",
+        "qs": { "access_token": "EAADZC8apK3RUBADV6uDhSV563gXkkNIv57xnJCQMNZCptCrZAi7GqitRLtrvrvhRqOAOSPzZA7JTv2GPblxAHXVorZBlp3HTULvUSemdosyyq0PlW3y1TtfOzHZA1hyNAMsSBzM4h41Df8tZCSmLJVQj2ogEDZBjIrNb9099DLUy54641gdy3RSI" },
+        "method": "POST",
+        "json": request_body_three
+        }, (err, res, body) => {
+          if(!err){
+            console.log("Message Sent!");
+          } else {
+            console.error("Unable to send message:" + err);
+          }
+      })
+    }
+
     // Returns a '200 OK' response to all requests
     res.status(200).send('EVENT_RECEIVED');
   } else {
