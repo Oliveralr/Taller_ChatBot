@@ -44,7 +44,10 @@ app.post('/webhook', function (req, res) {
                 sendMessageAPI(sender_psid);
             }
             else if (received_message.text === "ver mas") {
-                productSelection(sender_psid);
+                productSelectionOne(sender_psid);
+            }
+            else if (received_message.text === "otra compra") {
+                productSelectionTwo(sender_psid);
             }
             else if (received_message.attachments) {
                 // Get the URL of the message attachment
@@ -141,7 +144,7 @@ app.post('/webhook', function (req, res) {
                 }
             });
         }
-        function productSelection(sender_psid) {
+        function productSelectionOne(sender_psid) {
             var request_body_three = {
                 "recipient": {
                     "id": sender_psid
@@ -158,8 +161,8 @@ app.post('/webhook', function (req, res) {
                                     "buttons": [
                                         {
                                             "type": "web_url",
-                                            "url": "https://youtube.com",
-                                            "title": "View Website"
+                                            "url": "https://www.hawkersco.com/",
+                                            "title": "Gafas de sol temporada primavera-verano 2019 - $549"
                                         }
                                     ]
                                 }
@@ -173,6 +176,47 @@ app.post('/webhook', function (req, res) {
                 "qs": { "access_token": "EAADZC8apK3RUBADV6uDhSV563gXkkNIv57xnJCQMNZCptCrZAi7GqitRLtrvrvhRqOAOSPzZA7JTv2GPblxAHXVorZBlp3HTULvUSemdosyyq0PlW3y1TtfOzHZA1hyNAMsSBzM4h41Df8tZCSmLJVQj2ogEDZBjIrNb9099DLUy54641gdy3RSI" },
                 "method": "POST",
                 "json": request_body_three
+            }, function (err, res, body) {
+                if (!err) {
+                    console.log("Message Sent!");
+                }
+                else {
+                    console.error("Unable to send message:" + err);
+                }
+            });
+        }
+        function productSelectionTwo(sender_psid) {
+            var request_body_four = {
+                "recipient": {
+                    "id": sender_psid
+                },
+                "message": {
+                    "attachment": {
+                        "type": "template",
+                        "payload": {
+                            "template_type": "media",
+                            "elements": [
+                                {
+                                    "media_type": "image",
+                                    "url": "https://www.facebook.com/1494102097294193/photos/a.1495260733844996/1707592979278436/?type=3&theater",
+                                    "buttons": [
+                                        {
+                                            "type": "web_url",
+                                            "url": "https://www.hawkersco.com/",
+                                            "title": "Adquirelos - $499"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                }
+            };
+            request({
+                "uri": "https://graph.facebook.com/v2.6/me/messages",
+                "qs": { "access_token": "EAADZC8apK3RUBADV6uDhSV563gXkkNIv57xnJCQMNZCptCrZAi7GqitRLtrvrvhRqOAOSPzZA7JTv2GPblxAHXVorZBlp3HTULvUSemdosyyq0PlW3y1TtfOzHZA1hyNAMsSBzM4h41Df8tZCSmLJVQj2ogEDZBjIrNb9099DLUy54641gdy3RSI" },
+                "method": "POST",
+                "json": request_body_four
             }, function (err, res, body) {
                 if (!err) {
                     console.log("Message Sent!");
