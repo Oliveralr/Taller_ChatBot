@@ -181,22 +181,20 @@ app.post('/webhook', (req, res) => {
           "attachment":{
             "type":"template", 
             "payload":{
-              "template_type":"button",
-              "text":"Lentes de Sol temporada primavera-verano 2019",
-              "url":"https://cdn.shopify.com/s/files/1/0302/4437/products/gafas-sol-hawkers-one-otr01-g.progressive.jpg?v=1529678750", 
-              "is_reusable":true,
-              "buttons": [
+              "template_type":"media",
+              "elements": [
                 {
-                  "type":"web_url",
-                  "url":"https://www.messenger.com",
-                  "title":"Visita nuestro sitio web"
-                },
-                {
-                  "type":"web_url",
-                  "url":"https://www.messenger.com",
-                  "title":"Comprar más" 
+                   "media_type": "image",
+                   "url": "https://cdn.shopify.com/s/files/1/0302/4437/products/gafas-sol-hawkers-one-otr01-g.progressive.jpg?v=1529678750", 
+                   "buttons": [
+                      {
+                         "type": "web_url",
+                         "url": "https://youtube.com",
+                         "title": "View Website",
+                      }
+                   ]
                 }
-              ]
+             ]
             }
          }
       }
