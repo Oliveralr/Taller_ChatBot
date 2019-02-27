@@ -47,7 +47,7 @@ app.post('/webhook', (req, res) => {
       let response;
       
       // Checks if the message contains text
-      if (received_message.text) {    
+      if (received_message.text == "hola") {    
         // Create the payload for a basic text message, which
         // will be added to the body of our request to the Send API
         response = {
@@ -58,11 +58,10 @@ app.post('/webhook', (req, res) => {
         "¿Qué onda?","¿qué onda?","que onda","hi","Hi","buen dia","buenas tardes",
         "buenas noches","Buenas Noches","Buenas Tardes","ayuda","ola","Ola","whatsup",
         "whats up","oye","Oye","oie","Oie"];
- 
-        
-        if(received_message.text === "comprar"){
-          sendMessageAPI(sender_psid)
-        }
+      }
+
+      else if(received_message.text === "comprar"){
+        sendMessageAPI(sender_psid)
       }
        
       else if (received_message.attachments) {
