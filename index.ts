@@ -63,16 +63,17 @@ app.post('/webhook', (req, res) => {
         response = {
           "text": `Vendemos Lentes de muy buena calidad ;)`
         }
-        //callSendAPI(sender_psid, response);
       }
 
       else if(received_message.text === "ver mas"){
         productSelectionOne(sender_psid);
+        response = {
+          "text": `Uff estos son buenos :)`
+        }
       }
 
       else if(received_message.text === "otra compra"){
         productSelectionTwo(sender_psid);
-      
       }
        
       else if (received_message.attachments) {
@@ -103,7 +104,13 @@ app.post('/webhook', (req, res) => {
             }
           }
         }
-      } 
+      }
+      
+      else if(received_message.text === "gracias"){
+        response = {
+          "text":"Estoy para servirte"
+        }
+      }
 
       // Send the response message
       callSendAPI(sender_psid, response); 
