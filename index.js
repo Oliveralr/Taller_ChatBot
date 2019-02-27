@@ -124,21 +124,6 @@ app.post('/webhook', (req, res) => {
           "message": response
         }
 
-        request({
-          "uri": "https://graph.facebook.com/v2.6/me/messages",
-          "qs": { "access_token": "EAADZC8apK3RUBADV6uDhSV563gXkkNIv57xnJCQMNZCptCrZAi7GqitRLtrvrvhRqOAOSPzZA7JTv2GPblxAHXVorZBlp3HTULvUSemdosyyq0PlW3y1TtfOzHZA1hyNAMsSBzM4h41Df8tZCSmLJVQj2ogEDZBjIrNb9099DLUy54641gdy3RSI" },
-          "method": "POST",
-          "json": request_body
-          }, (err, res, body) => {
-            if(!err){
-              console.log("Message Sent!");
-            } else {
-              console.error("Unable to send message:" + err);
-            }
-        })
-    }
-
-      function imageSendAPI(sender_psid){
         let request_body_two = {
           "recipient": {
             "id": sender_psid
@@ -158,7 +143,7 @@ app.post('/webhook', (req, res) => {
           "uri": "https://graph.facebook.com/v2.6/me/messages",
           "qs": { "access_token": "EAADZC8apK3RUBADV6uDhSV563gXkkNIv57xnJCQMNZCptCrZAi7GqitRLtrvrvhRqOAOSPzZA7JTv2GPblxAHXVorZBlp3HTULvUSemdosyyq0PlW3y1TtfOzHZA1hyNAMsSBzM4h41Df8tZCSmLJVQj2ogEDZBjIrNb9099DLUy54641gdy3RSI" },
           "method": "POST",
-          "json": request_body_two
+          "json": request_body
           }, (err, res, body) => {
             if(!err){
               console.log("Message Sent!");
@@ -166,7 +151,7 @@ app.post('/webhook', (req, res) => {
               console.error("Unable to send message:" + err);
             }
         })
-      }
+    }
 
     // Returns a '200 OK' response to all requests
     res.status(200).send('EVENT_RECEIVED');
