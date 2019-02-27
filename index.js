@@ -40,8 +40,12 @@ app.post('/webhook', function (req, res) {
                     "buenas noches", "Buenas Noches", "Buenas Tardes", "ayuda", "ola", "Ola", "whatsup",
                     "whats up", "oye", "Oye", "oie", "Oie"];
             }
-            else if (received_message.text === "comprar") {
+            else if (received_message.text === "muestrame") {
                 sendMessageAPI(sender_psid);
+                response = {
+                    "text": "Vendemos Lentes de muy buena calidad ;)"
+                };
+                callSendAPI(sender_psid, response);
             }
             else if (received_message.text === "ver mas") {
                 productSelectionOne(sender_psid);
