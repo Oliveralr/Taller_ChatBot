@@ -60,7 +60,7 @@ app.post('/webhook', (req, res) => {
         "whats up","oye","Oye","oie","Oie"];
 
         if(received_message.text === "comprar"){
-          callSendAPI(sender_psid, response)
+          imageSendAPI(sender_psid)
         } 
 
       } else if (received_message.attachments) {
@@ -137,6 +137,36 @@ app.post('/webhook', (req, res) => {
             }
         })
     }
+
+      function imageSendAPI(sender_psid){
+        let request_body_two = {
+          "recipient": {
+            "id": sender_psid
+          },
+          "message": {
+            "attachment":{
+              "type":"image", 
+              "payload":{
+                "url":"http://www.messenger-rocks.com/image.jpg", 
+                "is_reusable":true
+              }
+           }
+        }
+      }
+
+        request({
+          "uri": "https://graph.facebook.com/v2.6/me/messages",
+          "qs": { "access_token": "EAADZC8apK3RUBADV6uDhSV563gXkkNIv57xnJCQMNZCptCrZAi7GqitRLtrvrvhRqOAOSPzZA7JTv2GPblxAHXVorZBlp3HTULvUSemdosyyq0PlW3y1TtfOzHZA1hyNAMsSBzM4h41Df8tZCSmLJVQj2ogEDZBjIrNb9099DLUy54641gdy3RSI" },
+          "method": "POST",
+          "json": request_body_two
+          }, (err, res, body) => {
+            if(!err){
+              console.log("Message Sent!");
+            } else {
+              console.error("Unable to send message:" + err);
+            }
+        })
+      }
 
     // Returns a '200 OK' response to all requests
     res.status(200).send('EVENT_RECEIVED');
