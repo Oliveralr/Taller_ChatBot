@@ -185,7 +185,7 @@ app.post('/webhook', (req, res) => {
               "elements": [
                 {
                    "media_type": "image",
-                   "url": "https://cdn.shopify.com/s/files/1/0302/4437/products/gafas-sol-hawkers-one-otr01-g.progressive.jpg?v=1529678750", 
+                   "url": "https://www.facebook.com/1494102097294193/photos/a.1495260733844996/1825749034129496/?type=3&theater", 
                    "buttons": [
                       {
                          "type": "web_url",
