@@ -61,30 +61,30 @@ app.post('/webhook', (req, res) => {
 
         if(received_message.text === "comprar"){
 
-          let attachment_url = './public/img/gafas.jpg';
-
           response = {
-            "attachment": {
-              "type": "template",
-              "payload": {
-                "template_type": "generic",
-                "elements": [{
-                  "title": "Te puedo ofrecer estas gafas de sol",
-                  "subtitle": "$649.00",
-                  "image_url": attachment_url,
-                  "buttons": [
-                    {
-                      "type": "postback",
-                      "title": "Comprar",
-                      "payload": "yes",
-                    },
-                    {
-                      "type": "postback",
-                      "title": "No me interesa",
-                      "payload": "no",
-                    }
-                  ],
-                }]
+            "message": {
+              "attachment": {
+                "type": "template",
+                "payload": {
+                  "template_type": "generic",
+                  "elements": [{
+                    "title": "Te puedo ofrecer estas gafas de sol",
+                    "subtitle": "$649.00",
+                    "image_url": './public/img/gafas.jpg',
+                    "buttons": [
+                      {
+                        "type": "postback",
+                        "title": "Comprar",
+                        "payload": "yes",
+                      },
+                      {
+                        "type": "postback",
+                        "title": "No me interesa",
+                        "payload": "no",
+                      }
+                    ],
+                  }]
+                }
               }
             }
           }
