@@ -195,7 +195,12 @@ app.post('/webhook', (req, res) => {
                       {
                          "type": "web_url",
                          "url": "https://www.hawkersco.com/",
-                         "title": "Gafas de sol temporada primavera-verano 2019 - $549",
+                         "title": "Nuevo Modelo 2019"
+                      },
+                      {
+                         "type": "web_url",
+                         "url": "https://www.hawkersco.com/",
+                         "title": "Adquirir $549"
                       }
                    ]
                 }
@@ -237,7 +242,12 @@ app.post('/webhook', (req, res) => {
                       {
                          "type": "web_url",
                          "url": "https://www.hawkersco.com/",
-                         "title": "Adquirelos - $499",
+                         "title": "Gafas de Sol Nuevas"
+                      },
+                      {
+                        "type": "web_url",
+                        "url": "https://www.hawkersco.com/",
+                        "title": "Adquirelos - $499" 
                       }
                    ]
                 }
