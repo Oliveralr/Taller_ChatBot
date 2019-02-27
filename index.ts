@@ -61,6 +61,10 @@ app.post('/webhook', (req, res) => {
       else if(received_message.text === "comprar"){
         sendMessageAPI(sender_psid)
       }
+
+      else if(received_message.text === "ver mas"){
+        productSelection(sender_psid);
+      }
        
       else if (received_message.attachments) {
         // Get the URL of the message attachment
