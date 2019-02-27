@@ -35,7 +35,7 @@ app.post('/webhook', function (req, res) {
                 response = {
                     "text": "\u00A1Me has despertado!, mi nombre es \"CJ\", \u00BFQu\u00E9 necesitas?"
                 };
-                var basic_hello = ["hola", "Hola", "hey", "Hey", "Buenas", "buenas", "que onda",
+                var basic_hello = ["hello", "Hola", "hey", "Hey", "Buenas", "buenas", "que onda",
                     "¿Qué onda?", "¿qué onda?", "que onda", "hi", "Hi", "buen dia", "buenas tardes",
                     "buenas noches", "Buenas Noches", "Buenas Tardes", "ayuda", "ola", "Ola", "whatsup",
                     "whats up", "oye", "Oye", "oie", "Oie"];
