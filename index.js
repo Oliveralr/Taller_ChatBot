@@ -60,34 +60,7 @@ app.post('/webhook', (req, res) => {
         "whats up","oye","Oye","oie","Oie"];
 
         if(received_message.text === "comprar"){
-
-          response = {
-            "message": {
-              "attachment": {
-                "type": "template",
-                "payload": {
-                  "template_type": "generic",
-                  "elements": [{
-                    "title": "Te puedo ofrecer estas gafas de sol",
-                    "subtitle": "$649.00",
-                    "image_url": './public/img/gafas.jpg',
-                    "buttons": [
-                      {
-                        "type": "postback",
-                        "title": "Comprar",
-                        "payload": "yes",
-                      },
-                      {
-                        "type": "postback",
-                        "title": "No me interesa",
-                        "payload": "no",
-                      }
-                    ],
-                  }]
-                }
-              }
-            }
-          }
+          
         } 
 
       } else if (received_message.attachments) {
@@ -148,7 +121,15 @@ app.post('/webhook', (req, res) => {
           "recipient": {
             "id": sender_psid
           },
-          "message": response
+          "message": {
+            "attachment": {
+              "type":"image",
+              "payload": {
+                "url":"https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjS3sLpjdzgAhXSY98KHW7FB4cQjRx6BAgBEAU&url=https%3A%2F%2Fwww.hawkersco.com%2Fproducts%2Fgafas-sol-carbon-black-dark-one&psig=AOvVaw0eu6x0n6ZQK0cmAA7zX4Y3&ust=1551363576095036",
+                "is_reusable":true
+              }
+            }
+          }
         }
 
         request({
@@ -201,6 +182,7 @@ app.get('/webhook', (req, res) => {
     }
   }
 });
+
 
 //verify_token: gangster
 //"localhost:1337/webhook?hub.verify_token=gangster&hub.challenge=CHALLENGE_ACCEPTED&hub.mode=subscribe"
