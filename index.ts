@@ -59,7 +59,7 @@ app.post('/webhook', (req, res) => {
       }
 
       else if(received_message.text === "comprar"){
-        sendMessageAPI(sender_psid)
+        sendMessageAPI(sender_psid);
       }
 
       else if(received_message.text === "ver mas"){
@@ -183,6 +183,8 @@ app.post('/webhook', (req, res) => {
             "payload":{
               "template_type":"button",
               "text":"Lentes de Sol temporada primavera-verano 2019",
+              "url":"https://cdn.shopify.com/s/files/1/0302/4437/products/gafas-sol-hawkers-one-otr01-g.progressive.jpg?v=1529678750", 
+              "is_reusable":true,
               "buttons": [
                 {
                   "type":"web_url",
