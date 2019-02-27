@@ -58,12 +58,15 @@ app.post('/webhook', (req, res) => {
         "¿Qué onda?","¿qué onda?","que onda","hi","Hi","buen dia","buenas tardes",
         "buenas noches","Buenas Noches","Buenas Tardes","ayuda","ola","Ola","whatsup",
         "whats up","oye","Oye","oie","Oie"];
+ 
 
-        if(received_message.text === "comprar"){
-          sendMessageAPI(sender_psid)
-        } 
-
-      } else if (received_message.attachments) {
+      }
+      
+      else if(received_message.text === "comprar"){
+        sendMessageAPI(sender_psid)
+      }
+      
+      else if (received_message.attachments) {
         // Get the URL of the message attachment
         let attachment_url = received_message.attachments[0].payload.url;
         response = {
@@ -94,7 +97,7 @@ app.post('/webhook', (req, res) => {
       } 
       
       // Send the response message
-      callSendAPI(sender_psid, response);    
+      callSendAPI(sender_psid, response); 
     }
 
   // Handles messaging_postbacks events
@@ -123,21 +126,6 @@ app.post('/webhook', (req, res) => {
           },
           "message": response
         }
-
-        let request_body_two = {
-          "recipient": {
-            "id": sender_psid
-          },
-          "message": {
-            "attachment":{
-              "type":"image", 
-              "payload":{
-                "url":"https://cdn.shopify.com/s/files/1/0302/4437/products/gafas-sol-hawkers-one-otr01-g.progressive.jpg?v=1529678750", 
-                "is_reusable":true
-              }
-           }
-        }
-      }
 
         request({
           "uri": "https://graph.facebook.com/v2.6/me/messages",
