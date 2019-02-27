@@ -59,7 +59,8 @@ app.post('/webhook', (req, res) => {
         "buenas noches","Buenas Noches","Buenas Tardes","ayuda","ola","Ola","whatsup",
         "whats up","oye","Oye","oie","Oie"];
  
-
+        // Send the response message
+        callSendAPI(sender_psid, response); 
       }
       
       else if(received_message.text === "comprar"){
@@ -95,9 +96,7 @@ app.post('/webhook', (req, res) => {
           }
         }
       } 
-      
-      // Send the response message
-      callSendAPI(sender_psid, response); 
+    
     }
 
   // Handles messaging_postbacks events
